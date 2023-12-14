@@ -120,7 +120,7 @@ with tab1:
 
     ax1.set_xlabel('Street Name')
     ax1.set_ylabel('Count')
-    ax1.set_title('Pedestrians Injured By Street Name (Top 5)')
+    ax1.set_title('Pedestrians Injured on Street Name (Top 5)')
     ax1.set_xticks(x1)
     ax1.set_xticklabels(pedestrians_injured_df['ON STREET NAME'])
     ax1.legend()
@@ -149,9 +149,9 @@ with tab1:
     # Create the bars for pedestrians killed (red color)
     bars_killed = ax2.bar(x2, pedestrians_killed_df['NUMBER OF PEDESTRIANS KILLED'], label='Killed', color='red')
 
-    ax2.set_xlabel('On-Street Name')
+    ax2.set_xlabel('Street Name')
     ax2.set_ylabel('Count')
-    ax2.set_title('Pedestrians Killed by Street Name (Top 5)')
+    ax2.set_title('Pedestrians Killed on Street Name (Top 5)')
     ax2.set_xticks(x2)
     ax2.set_xticklabels(pedestrians_killed_df['ON STREET NAME'])
     ax2.legend()
@@ -199,7 +199,7 @@ with tab1:
     quarterly_summary = filtered_df.groupby('Time Quarter')[['NUMBER OF PEDESTRIANS INJURED', 'NUMBER OF PEDESTRIANS KILLED']].sum()
 
     # Create a pie chart to visualize the data
-    st.title("What Time of Day is the Safest and Most Dangerous for Motorist Injuries and Fatalities")
+    st.title(f"What Time of Day is the Safest and Most Dangerous for Motorist Injuries and Fatalities in {selected_borough}")
     fig, ax = plt.subplots()
 
     # Create a list of labels including both percentage and numerical sum
@@ -249,7 +249,7 @@ with tab2:
 
     ax1.set_xlabel('Street Name')
     ax1.set_ylabel('Count')
-    ax1.set_title('cyclist Injured By Street Name (Top 5)')
+    ax1.set_title('Cyclists Injured on Street Name (Top 5)')
     ax1.set_xticks(x1)
     ax1.set_xticklabels(cyclist_injured_df['ON STREET NAME'])
     ax1.legend()
@@ -277,9 +277,9 @@ with tab2:
     # Create the bars for Cyclists killed (red color)
     bars_killed = ax2.bar(x2, cyclist_killed_df['NUMBER OF CYCLIST KILLED'], label='Killed', color='red')
 
-    ax2.set_xlabel('On-Street Name')
+    ax2.set_xlabel('Street Name')
     ax2.set_ylabel('Count')
-    ax2.set_title('Cyclists Killed by Street Name (Top 5)')
+    ax2.set_title('Cyclists Killed on Street Name (Top 5)')
     ax2.set_xticks(x2)
     ax2.set_xticklabels(cyclist_killed_df['ON STREET NAME'])
     ax2.legend()
@@ -327,7 +327,7 @@ with tab2:
     quarterly_summary = filtered_df.groupby('Time Quarter')[['NUMBER OF CYCLIST INJURED', 'NUMBER OF CYCLIST KILLED']].sum()
 
     # Create a pie chart to visualize the data
-    st.title("What Time of Day is the Safest and Most Dangerous for Cyclist Injuries and Fatalities")
+    st.title(f"What Time of Day is the Safest and Most Dangerous for Cyclist Injuries and Fatalities in {selected_borough}")
     fig, ax = plt.subplots()
 
     # Create a list of labels including both percentage and numerical sum
@@ -390,9 +390,7 @@ with tab3:
                     textcoords="offset points",
                     ha='center', va='bottom')
 
-    # # Set the y-axis ticks to show integer values starting from 0
-    # plt.yticks(range(0, int(motorist_injured_df['NUMBER OF MOTORIST INJURED'].max()) + 1))
-
+    
     # Rotate x-axis labels for better readability
     plt.xticks(rotation=45)
     st.pyplot(fig)
@@ -457,7 +455,7 @@ with tab3:
     quarterly_summary = filtered_df.groupby('Time Quarter')[['NUMBER OF MOTORIST INJURED', 'NUMBER OF MOTORIST KILLED']].sum()
 
     # Create a pie chart to visualize the data
-    st.title("What Time of Day is the Safest and Most Dangerous for Motorist Injuries and Fatalities")
+    st.title(f"What Time of Day is the Safest and Most Dangerous for Motorist Injuries and Fatalities in {selected_borough}")
     fig, ax = plt.subplots()
 
     # Create a list of labels including both percentage and numerical sum
