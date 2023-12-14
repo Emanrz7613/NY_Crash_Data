@@ -1,10 +1,16 @@
 # NYC Crash Data Visualization
 
+---
+
 ## Streamlit App link
 [Click here to view the Streamlit app](nyc-crashdata.streamlit.app)  <!-- Replace '#' with the link to your Streamlit app -->
 
+---
+
 ## Introduction
 This project aims to visualize and analyze traffic accident data in New York City. The main goal is to highlight the areas with the highest incidence of traffic-related injuries and fatalities, providing a clear and interactive interface for users to explore and understand the patterns in crash data. Through this analysis, we can identify dangerous streets and intersections, thereby informing policy decisions and public awareness efforts aimed at improving road safety.
+
+---
 
 ## Data/Operation Abstraction Design
 The data for this project is sourced from the [Motor Vehicle Collisions - Crashes dataset](https://catalog.data.gov/dataset/motor-vehicle-collisions-crashes) provided by the NYC Open Data portal. This comprehensive dataset compiles details on every motor vehicle collision in NYC as reported by the NYPD through the Traffic Accident Management System.
@@ -18,7 +24,7 @@ The dataset was meticulously prepared with the following procedures to enhance i
 
 These data preparation steps were critical in constructing a robust and reliable dataset, enabling the app to provide users with meaningful and current insights into traffic-related incidents within NYC.
 
-
+---
 
 ## Future Work
 The Streamlit app is an ongoing project with the following future enhancements planned:
@@ -28,6 +34,8 @@ The Streamlit app is an ongoing project with the following future enhancements p
 - **User Interaction**: Allowing users to filter data by date range, time of day, or type of accident.
 - **Geospatial Analysis**: Further development of geospatial visualizations to identify hotspots and trends over time.
 
+---
+
 ## How to Use the App
 Upon accessing the app, users can interact with the following features:
 
@@ -35,6 +43,7 @@ Upon accessing the app, users can interact with the following features:
 - **Data Visualization**: View bar charts and maps that dynamically update based on the selected borough.
 - **Tabs for Different Categories**: Explore categorized data on pedestrians, cyclists, and motorists.
 
+---
 
 ## References
 For further reading and context on traffic safety and the challenges faced by cyclists and pedestrians in New York City, the following resources provide valuable insights:
