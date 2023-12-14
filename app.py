@@ -134,9 +134,7 @@ with tab1:
                     textcoords="offset points",
                     ha='center', va='bottom')
 
-    # Set the y-axis ticks to show integer values starting from 0
-    plt.yticks(range(0, int(pedestrians_injured_df['NUMBER OF PEDESTRIANS INJURED'].max()) + 1))
-
+    
     # Rotate x-axis labels for better readability
     plt.xticks(rotation=45)
     st.pyplot(fig)
@@ -265,10 +263,7 @@ with tab2:
                     textcoords="offset points",
                     ha='center', va='bottom')
 
-    # Set the y-axis ticks to show integer values starting from 0
-    plt.yticks(range(0, int(cyclist_injured_df['NUMBER OF CYCLIST INJURED'].max()) + 1))
-
-    # Rotate x-axis labels for better readability
+        # Rotate x-axis labels for better readability
     plt.xticks(rotation=45)
     st.pyplot(fig)
 
