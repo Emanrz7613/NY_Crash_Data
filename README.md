@@ -3,7 +3,7 @@
 ---
 
 ## Streamlit App link
-[Click here to view the Streamlit app](nyc-crashdata.streamlit.app)  <!-- Replace '#' with the link to your Streamlit app -->
+[Click here to view the Streamlit app](https://nyc-crashdata.streamlit.app) 
 
 ---
 

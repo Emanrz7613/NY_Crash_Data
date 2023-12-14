@@ -5,7 +5,7 @@ import json
 import matplotlib.pyplot as plt
 import numpy as np
 
-
+# cache the data
 @st.cache_data
 def load_data(data_file):
     df = pd.read_csv(data_file)
@@ -14,7 +14,8 @@ def load_data(data_file):
 data_file = 'data2.csv'
 df = load_data(data_file)
 
-st.markdown("<img src='https://miro.medium.com/v2/resize:fit:800/0*qME_9ndLowgvyYPZ.jpeg' alt='I Love NY' width='700'/>", unsafe_allow_html=True)
+# include "I love NYC" photo 
+st.image('https://miro.medium.com/v2/resize:fit:800/0*qME_9ndLowgvyYPZ.jpeg', use_column_width=True)
 
 
 st.markdown("# New York City Crash Data")
@@ -36,32 +37,15 @@ st.title("New York City Boroughs Map")
 selected_borough = st.selectbox("Select a Borough to View", ["Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island"])
 selected_borough_upper = selected_borough.upper()
 
-# Function to calculate the totals for the selected borough
-def calculate_totals_for_borough(df, borough_name):
-    borough_data = df[df['boro_name'] == borough_name]
-    total_killed = borough_data['NUMBER OF PERSONS KILLED'].sum()
-    total_injured = borough_data['NUMBER OF PERSONS INJURED'].sum()
-    return total_killed, total_injured
-
 # Function to highlight the selected borough and calculate totals
 def highlight_borough(geojson, borough_name, df):
     highlight_color = [180, 0, 200, 140]  # Highlight color
     default_color = [200, 200, 200, 80]   # Default color
 
-    # Call calculate_totals_for_borough here to ensure fresh calculation on each selection
-    selected_borough_total_killed, selected_borough_total_injured = calculate_totals_for_borough(df, selected_borough_upper)
-
-    # Convert totals to int to ensure JSON serializability
-    total_killed = int(selected_borough_total_killed)
-    total_injured = int(selected_borough_total_injured)
-
     for feature in geojson['features']:
         feature['properties']['color'] = default_color
         if feature['properties']['boro_name'] == borough_name:
-            feature['properties']['color'] = highlight_color
-            # Assign the totals to each feature's properties
-            feature['properties']['total_killed'] = total_killed
-            feature['properties']['total_injured'] = total_injured
+            feature['properties']['color'] = highlight_color            
         
     return geojson
 
@@ -78,7 +62,7 @@ layer = pdk.Layer(
     pickable=True    
 )
 
-st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state, tooltip=True))
+st.pydeck_chart(pdk.Deck(layers=[layer], initial_view_state=view_state))
 
 # Create tabs for different categories
 tab1, tab2, tab3 = st.tabs(["Pedestrians", "Cyclists", "Motorists"])
@@ -125,12 +109,12 @@ with tab1:
     ax1.set_xticklabels(pedestrians_injured_df['ON STREET NAME'])
     ax1.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values
     for bar in bars_injured:
         height = bar.get_height()
-        ax1.annotate(f'{height}',  # Convert to integers
+        ax1.annotate(f'{height}',  
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -156,12 +140,12 @@ with tab1:
     ax2.set_xticklabels(pedestrians_killed_df['ON STREET NAME'])
     ax2.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values
     for bar in bars_killed:
         height = bar.get_height()
-        ax2.annotate(f'{int(height)}',  # Convert to integers
+        ax2.annotate(f'{int(height)}',  
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -206,7 +190,7 @@ with tab1:
     labels = [f'{quarter}\n{quarterly_summary["NUMBER OF PEDESTRIANS INJURED"][quarter]:.0f} Injured, {quarterly_summary["NUMBER OF PEDESTRIANS KILLED"][quarter]:.0f} Killed\n({quarterly_summary["NUMBER OF PEDESTRIANS INJURED"][quarter] + quarterly_summary["NUMBER OF PEDESTRIANS KILLED"][quarter]:.0f} Total)' for quarter in quarterly_summary.index]
 
     ax.pie(quarterly_summary.sum(axis=1), labels=labels, startangle=90, autopct='%1.1f%%', pctdistance=0.85)
-    ax.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+    ax.axis('equal')  
 
     # Show the pie chart in Streamlit
     st.pyplot(fig)
@@ -254,12 +238,12 @@ with tab2:
     ax1.set_xticklabels(cyclist_injured_df['ON STREET NAME'])
     ax1.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values
     for bar in bars_injured:
         height = bar.get_height()
-        ax1.annotate(f'{height}',  # Convert to integers
+        ax1.annotate(f'{height}', 
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -284,12 +268,12 @@ with tab2:
     ax2.set_xticklabels(cyclist_killed_df['ON STREET NAME'])
     ax2.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values 
     for bar in bars_killed:
         height = bar.get_height()
-        ax2.annotate(f'{int(height)}',  # Convert to integers
+        ax2.annotate(f'{int(height)}',  
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -381,12 +365,12 @@ with tab3:
     ax1.set_xticklabels(motorist_injured_df['ON STREET NAME'])
     ax1.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values
     for bar in bars_injured:
         height = bar.get_height()
-        ax1.annotate(f'{height}',  # Convert to integers
+        ax1.annotate(f'{height}',  
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
@@ -412,12 +396,12 @@ with tab3:
     ax2.set_xticklabels(motorist_killed_df['ON STREET NAME'])
     ax2.legend()
 
-    # Annotate the bars with their values (as integers)
+    # Annotate the bars with their values
     for bar in bars_killed:
         height = bar.get_height()
-        ax2.annotate(f'{int(height)}',  # Convert to integers
+        ax2.annotate(f'{int(height)}',  
                     xy=(bar.get_x() + bar.get_width() / 2, height),
-                    xytext=(0, 3),  # 3 points vertical offset for better alignment
+                    xytext=(0, 3),  
                     textcoords="offset points",
                     ha='center', va='bottom')
 
