@@ -1,2 +1,7 @@
 .venv
-my_ignore_file.py
+test.py
+tab1.py
+tab2.py
+tab3.py
+develop.ipynb
+
